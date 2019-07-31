@@ -1,0 +1,8 @@
+
+[api]
+url = https://127.0.0.1:5665/
+username = icinga2-autoack
+password = mrznawrxbxbg
+ca_certificate = ./icinga2-ca.crt
+
+

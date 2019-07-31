@@ -1,0 +1,6 @@
+icinga2-api.ini
+build/
+
+# We are using Pipfile here
+build-requirements.txt
+requirements.txt
