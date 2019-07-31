@@ -26,7 +26,7 @@ def do_ack():
             service_name = event['service']
         except KeyError:
             service_name = None
-        logger.info(f"Got change state event {event}")
+        logger.info("Got change state event {event}".format(event=event))
         if event['state'] == 0:  # the service is up now
             continue
 
@@ -60,22 +60,24 @@ def do_ack():
             continue
 
         downtime_id = int(the_downtime['attrs']['legacy_id'])
-        logger.info(f"Found downtime {downtime_id}, doing ACK.")
+        logger.info("Found downtime {downtime_id}, doing ACK.".format(
+            downtime_id=downtime_id))
         if len(downtimes) > 0 and expires_at:
+            comment = 'This is auto acknowledge. {object_type} is in downtime #{downtime_id}'.format(
+                downtime_id=downtime_id, object_type=object_type,
+            )
             icinga2api.actions.acknowledge_problem(
                 object_type=object_type,
                 filters=filters,
                 filter_vars=filter_vars,
                 author='AutoAck bot',
-                comment=f'This is auto acknowledge. {object_type} is in downtime #{downtime_id}',
+                comment=comment,
                 sticky=False,
                 notify=False,
                 expiry=expires_at,
             )
 
-
-
 if __name__ == '__main__':
-    #logging.basicConfig(level=logging.DEBUG)
+    # logging.basicConfig(level=logging.DEBUG)
     logging.basicConfig(level=logging.INFO)
     do_ack()
