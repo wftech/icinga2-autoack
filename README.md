@@ -2,10 +2,13 @@
 # icinga2-autoack
 
 This script listens to Icinga2 API and acknowledges hosts and services
-during they downtimes. 
+during they downtimes.  
+
+It also acknowledges hosts and services with `autoack` variable set.
 
 Why? Because there are some buggy notification tools which do not 
 honor "in downtime" but does work with acknowledged state. 🤦
+
 
 ## Code maturity
 
