@@ -35,11 +35,14 @@ module [configuration][icinga2api-config].
 
 ```ini
 [api]
-url = https://127.0.0.1:5665/
+url = https://my-icinga-hostname:5665/
 username = auto-ack
 password = mrznawrxbxbg
 ca_certificate = ./icinga2-ca.crt
 ```
+
+Copy  certificate from `/var/lib/icinga2/ca/ca.crt` to 
+your directory.
 
 Start the script (possibly in Pipfile managed virtualenv).
 
