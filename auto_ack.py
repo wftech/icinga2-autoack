@@ -120,7 +120,7 @@ def handle_stream():
 
         else:
             object_type = 'Service'
-            object_name = '!'.join(host_name, service_name)
+            object_name = '!'.join([host_name, service_name])
             filters = 'match(host.name,filter_host) && match(service.name,filter_service)',
             filter_vars = dict(filter_host=host_name,
                                filter_service=service_name)
