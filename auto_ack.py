@@ -29,7 +29,6 @@ def get_downtime(filters, filter_vars, object_type='Host'):
         # skip service downtimes when lookup up for host ones
         if object_type == 'Host' and 'service_name' in d['attrs']:
             continue
-        pprint(d)
         # skip inactive and floating downtimes
         if not d['attrs']['active']:
             continue
