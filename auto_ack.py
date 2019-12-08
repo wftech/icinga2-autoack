@@ -61,14 +61,11 @@ def acknowledge_on_downtime(the_downtime, object_type, filters, filter_vars):
     )
 
 
-def acknowledge_unconditionally(object_type, filters, filter_vars,
-                                duration=86400):
-    logger.info("Doing autoack for duration {duration}.".format(
-        duration=duration))
+def acknowledge_unconditionally(object_type, filters, filter_vars):
+    logger.info("Doing autoack")
     comment = 'This is auto acknowledge. {object_type} has autoack attribute set'.format(
         object_type=object_type,
     )
-    expires_at = datetime.datetime.now().timestamp() + duration
     icinga2api.actions.acknowledge_problem(
         object_type=object_type,
         filters=filters,
@@ -76,8 +73,7 @@ def acknowledge_unconditionally(object_type, filters, filter_vars,
         author='AutoAck bot',
         comment=comment,
         sticky=False,
-        notify=False,
-        expiry=expires_at,
+        notify=False
     )
 
 
