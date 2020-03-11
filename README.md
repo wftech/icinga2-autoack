@@ -17,7 +17,7 @@ in production. 🤷
 
 ## How to start
 
-Create Icinga2 API user in `/etc/icinga2/
+Create Icinga2 API user in `/etc/icinga2/apiusers.conf
 
 ```
 object ApiUser "autoack" {
@@ -33,21 +33,27 @@ object ApiUser "autoack" {
 }
 ```
 
-Create `icinga2-api.ini` according to [icinga2api][icinga2api] 
+Create `icinga2-api.ini` in the directory the script will be executed according to [icinga2api][icinga2api] 
 module [configuration][icinga2api-config].
+In case you installed the distribution package from releases, this would be in /opt/icinga2-autoack.
 
 ```ini
 [api]
 url = https://my-icinga-hostname:5665/
-username = auto-ack
+username = autoack
 password = mrznawrxbxbg
 ca_certificate = ./icinga2-ca.crt
 ```
 
 Copy  certificate from `/var/lib/icinga2/ca/ca.crt` to 
-your directory.
+the directory, the script will be executed as icinga2-ca.crt.
+In case you installed the distribution package from releases, this would be in /opt/icinga2-autoack.
 
-Start the script (possibly in Pipfile managed virtualenv).
+Start the script (possibly in Pipfile managed virtualenv). In case of distribution package run
+
+```
+sudo systemctl restart icinga2-autoack
+```
 
 
 ## License
