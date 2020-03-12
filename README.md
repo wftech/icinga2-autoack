@@ -2,7 +2,7 @@
 # icinga2-autoack
 
 This script listens to Icinga2 API and acknowledges hosts and services
-during they downtimes.  
+during their downtimes.  
 
 It also acknowledges hosts and services with `autoack` variable set.
 
